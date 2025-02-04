@@ -1,0 +1,268 @@
+#settings {
+  transition: all 0.6s;
+  position: fixed;
+  z-index: 10;
+  width: 50%;
+  height: 90vh;
+  background-color: var(--background-color);
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -175%);
+  border: 7px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-settings {
+  transform: translate(-50%, -50%) !important;
+}
+
+#settings h1 {
+  position: relative;
+  font-size: 50px;
+  text-align: center;
+  width: 100%;
+  top: -40px;
+  height: 2rem;
+}
+
+label {
+  background-color: var(--border-color);
+  padding: 0.1rem 0.3rem;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color: var(--text-color) !important;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+  font-size: 25px;
+}
+input {
+  width: 2rem;
+  height: 1rem;
+}
+
+input {
+  font-size: 25px;
+
+  position: relative;
+  color: var(--title-color);
+  width: 90%;
+  background-color: var(--text-color);
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  color: var(--title-color);
+  padding: 0.6rem 5px;
+  border: 5px solid var(--border-color);
+  border-bottom: 10px solid var(--border-color);
+  border-top-left-radius: 0;
+  caret-color: var(--border-color);
+}
+
+input:hover + label,
+input:focus + label {
+  top: 5px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.settings-buttons {
+  position: relative;
+  width: 100%;
+}
+
+.settings-checkbox {
+  z-index: 4;
+  margin: 1.8rem 0;
+  position: relative;
+  width: 5rem;
+  height: 2rem;
+  background-color: var(--text-color);
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.settings-checkbox[type="on"]::after {
+  content: "Enabled";
+}
+.settings-checkbox[type="off"]::after {
+  content: "Disabled";
+}
+
+.settings-checkbox[type="off"]::after,
+.settings-checkbox[type="on"]::after {
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.settings-checkbox {
+  border: 5px solid var(--border-color);
+  border-bottom: 10px solid var(--border-color);
+  border-radius: 15px;
+  color: var(--border-color);
+}
+
+.settings-checkboxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+input:hover,
+.settings-checkbox:hover {
+  background-color: var(--highlight-color);
+}
+.settings-checkbox:hover {
+  cursor: pointer;
+}
+
+.settings-checkbox:hover::after {
+  font-size: 27px;
+}
+
+input:hover,
+input:focus {
+  background-color: var(--highlight-color);
+  color: white;
+  font-size: 27px;
+}
+
+::selection {
+  background: transparent;
+}
+
+.settings-checkbox p {
+  position: relative;
+  font-size: 25px;
+  color: var(--text-color);
+  bottom: 170%;
+  text-align: center;
+}
+
+.settings-checkbox:hover p {
+  color: var(--highlight-color);
+}
+
+.settings-checkbox p::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  z-index: -1;
+  background-color: var(--border-color);
+  right: -5px;
+  bottom: 5px;
+  border-radius: 15px;
+  border: 5px solid var(--border-color);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.settings-done {
+  position: fixed;
+  background-color: var(--border-color);
+  color: var(--text-color);
+  border-radius: 15px;
+  padding: 0.2rem 0.8rem;
+  margin-bottom: 5px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.settings-done:hover {
+  transform: translate(-50%, -5px) rotate(-5deg) scale(1.1);
+  color: var(--title-color);
+}
+
+.email-section {
+  display: block;
+}
+.email-section div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.email-section div input {
+  border-radius: 15px !important;
+  margin: 0 1rem;
+}
+.email-section div label {
+  margin: 0 1rem;
+}
+
+.email-section div p {
+  position: absolute;
+  font-size: 50px;
+  height: 0rem;
+  bottom: 10px;
+  color: var(--text-color);
+}
+
+.email-section div p::after {
+  content: "Email";
+  position: absolute;
+  color: var(--title-color);
+  display: block;
+  top: -40px;
+  right: -18px;
+  z-index: 2;
+  font-size: 40px;
+}
+
+.email-labels {
+  justify-content: space-between !important;
+  margin-top: 20px;
+}
+
+.example {
+  font-size: 20px;
+  position: relative;
+  height: 10px;
+  text-align: center;
+  line-height: 0.7;
+  bottom: 10px;
+  font-style: italic;
+  width: 100%;
+  color: var(--highlight-color);
+}
+
+.example:hover {
+  font-size: 28px;
+  color: var(--title-color);
+}
+
+input[type="text"] {
+  width: 80%;
+}
+label[for="username"] {
+  display: block;
+  width: 8rem;
+}
+label[for="username"],
+input[type="text"] {
+  margin-left: 7.5%;
+}
