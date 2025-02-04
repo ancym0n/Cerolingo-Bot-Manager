@@ -31,7 +31,7 @@ with open(accounts_path, "r", encoding="utf-8") as file:
 for t in range(len(email_cookie_list)):
     i =email_cookie_list[t]
     login = {
-        "username":i[0].split(".")[0],
+        "username":i,
         "token": re.search(r"jwt_token=([^;]+)", i[1]).group(1),
         "fromLanguage": "pl",
         "learningLanguage": "en"
@@ -112,3 +112,5 @@ for t in range(len(email_cookie_list)):
             sys.stdout.write(f"\r> [{a+1}/{repeat}] Gained {13*repeat}xp")
 
         sys.stdout.flush()
+print("\nTask finished closing in 10s...")
+time.sleep(10)

@@ -24,10 +24,13 @@ Simple Duolingo Bot Managing Tool
    - Visit [python.org/downloads](https://www.python.org/downloads/)
    - Download the latest version and complete the setup (ensure **Add Python to PATH** is checked).
 
-3. **Install Selenium**  
+3. **Install Libraries**  
    After installing Python, open your terminal or command prompt and run:
    ```bash
    pip install selenium
+   ```
+   ```bash
+   pip install requests
    ```
 
 ## 🖥️ Windows Only

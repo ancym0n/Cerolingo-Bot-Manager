@@ -56,7 +56,7 @@ def createTheDamnAccount():
     ]
 
     username=f"{usernamePrefix}{random.randint(100000,999999)}"
-    email=f"{emailPrefix}{random.randint(10,99)}@{emailDomain}"
+    email=f"{emailPrefix}{random.randint(1000000,9999999)}@{emailDomain}"
     password=f"{random.randint(1000,9999)}{username}{random.randint(1000,9999)}"
 
     print("\n[ACCOUNT] Registering")
@@ -119,5 +119,5 @@ if loop:
 else:
     createTheDamnAccount()
 
-print("Task finished closing in 10s...")
+print("\nTask finished closing in 10s...")
 time.sleep(10)
