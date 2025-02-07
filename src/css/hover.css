@@ -1,0 +1,12 @@
+a:hover,
+h1:hover,
+img:hover {
+  transform: rotate(-5deg) scale(1.1);
+  color: var(--title-color);
+}
+
+h2:hover,
+p:hover {
+  transform: scale(1.1);
+  color: var(--title-color);
+}

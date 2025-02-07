@@ -1,0 +1,42 @@
+#faq {
+  width: 95%;
+  margin: 0 2.5%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+  background-color: var(--alt-main-color);
+  border-radius: 20px;
+  text-align: center;
+  line-height: 0.7;
+}
+
+#faq,
+#faq::before {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+#faq::before {
+  border-radius: 25px;
+  content: "";
+  position: absolute;
+  background-color: var(--dark-main-color);
+  width: 100%;
+  height: 100%;
+  padding: 0.8%;
+  z-index: -1;
+}
+
+#faq h1 {
+  margin-bottom: 1rem;
+}
+
+#faq h2 {
+  margin: 1rem 0;
+}
+
+#faq p,
+#faq li {
+  width: 80%;
+}

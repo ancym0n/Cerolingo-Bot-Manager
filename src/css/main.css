@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Poppins:ital,wght@0,300;0,400;1,300&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s;
+  --background-color: #7b93ff;
+  --dark-main-color: #6877fe;
+  --main-color: #a1b2ff;
+  --light-main-color: #b3d0ff;
+  --title-color: #e7ecff;
+  --alt-main-color: #7385fa;
+}
+
+body {
+  background-color: var(--background-color);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+h1,
+h2,
+p,
+a,
+li {
+  font-family: "Dongle", sans-serif;
+  color: var(--title-color);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1,
+h2,
+a {
+  font-weight: bold;
+}
+
+a {
+  color: var(--main-color);
+  display: block;
+  text-decoration: none;
+  background-color: var(--dark-main-color);
+  border: 5px solid var(--dark-main-color);
+  border-radius: 15px;
+  padding: 0.2rem 0.4rem;
+  margin: 0.2rem 0;
+}

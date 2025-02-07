@@ -1,0 +1,20 @@
+#content {
+  width: 95%;
+  margin: 0.8% 2.5%;
+  display: grid;
+  justify-items: center;
+  position: relative;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: var(--background-color);
+}
+
+#content::before {
+  content: "";
+  position: absolute;
+  background-color: var(--dark-main-color);
+  width: 100%;
+  height: 100%;
+  padding: 0.8%;
+  z-index: -1;
+}
