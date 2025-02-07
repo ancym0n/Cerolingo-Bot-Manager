@@ -1,4 +1,11 @@
-import re,time,requests,json,sys,os
+try:
+    import re,time,requests,json,sys,os
+except:
+    import os
+    print("[ERROR] Couldn't load all libraries. Attempting to download them...")
+    os.system("pip install selenium")
+    import re,time,requests,json,sys,os
+
 config=sys.argv
 lessonsPerAccount=config[1]
 legit=config[2]
