@@ -62,15 +62,15 @@ function createWindow() {
       contextIsolation: true,
       enableRemoteModule: false,
       nodeIntegration: false,
-      devTools: true, // CHANGE TO FALSE
+      devTools: false, // CHANGE TO FALSE
     },
   });
 
-  mainWindow
-    .loadFile(path.join(__dirname, "src", "views", "index.html"))
-    .then(() => {
-      mainWindow.webContents.send("set-version", app.getVersion());
-    });
+  mainWindow.loadFile(path.join(__dirname, "src", "views", "index.html"));
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+    mainWindow.webContents.send("set-version", app.getVersion());
+  });
 }
 
 app.whenReady().then(() => {

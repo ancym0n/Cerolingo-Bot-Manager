@@ -151,7 +151,7 @@ function loadConfig(id) {
       let emailDomain = "lingo.com";
       let qualify = true;
       let loop = false;
-      let console = false;
+      let console = true;
 
       let config = {
         usernamePrefix: usernamePrefix,
