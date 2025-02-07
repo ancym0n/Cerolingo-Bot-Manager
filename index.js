@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const { exec, spawn } = require("child_process");
 const path = require("path");
+if (require("electron-squirrel-startup")) return app.quit();
 
 function runPythonScript(scriptName, args = []) {
   return new Promise((resolve, reject) => {
