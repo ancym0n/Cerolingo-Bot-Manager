@@ -38,7 +38,7 @@ with open(accounts_path, "r", encoding="utf-8") as file:
 for t in range(len(email_cookie_list)):
     i =email_cookie_list[t]
     login = {
-        "username":i,
+        "username":i[0],
         "token": re.search(r"jwt_token=([^;]+)", i[1]).group(1),
         "fromLanguage": "pl",
         "learningLanguage": "en"
