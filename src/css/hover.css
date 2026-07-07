@@ -1,0 +1,19 @@
+a:hover,
+#faq h1:hover {
+  transform: rotate(-5deg) scale(1.1);
+  color: var(--title-color);
+}
+
+h2:hover,
+p:hover {
+  transform: scale(1.05);
+  color: var(--title-color);
+}
+
+a:hover {
+  color: var(--dark-main-color);
+}
+
+#faq > div:hover {
+  scale: 1.1;
+}

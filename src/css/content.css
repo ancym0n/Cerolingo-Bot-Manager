@@ -1,0 +1,15 @@
+#content {
+  width: 95%;
+  margin: 2.5% 0 0 0;
+  display: grid;
+  justify-items: center;
+  position: relative;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: var(--alt-main-color);
+  border-radius: 25px;
+}
+
+#content > img {
+  width: 80%;
+}
