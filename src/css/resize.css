@@ -1,0 +1,145 @@
+@media (min-width: 960px) {
+  #hero {
+    max-width: 44rem;
+    gap: 1.65rem;
+  }
+
+  #banner {
+    width: min(88%, 26.5rem);
+  }
+
+  #img-title {
+    max-width: 26.5rem;
+  }
+
+  #buttons-section {
+    padding: 1.9rem 1.95rem 2.1rem;
+    gap: 1.25rem;
+  }
+
+  .button {
+    height: 3.75rem;
+  }
+
+  .button-text {
+    font-size: 1.08rem;
+  }
+
+  .button-settings {
+    width: 3.75rem;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    padding: 1rem 0.9rem 0.85rem;
+    gap: 1rem;
+  }
+
+  #hero {
+    gap: 1rem;
+  }
+
+  #banner {
+    width: min(92%, 19.5rem);
+  }
+
+  #buttons-section {
+    padding: 1.15rem 1.05rem 1.3rem;
+    gap: 0.8rem;
+    border-radius: 16px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .button {
+    height: 3.25rem;
+  }
+
+  .button-text {
+    font-size: 0.96rem;
+  }
+
+  .button-settings {
+    width: 3.25rem;
+  }
+
+  #settings {
+    width: min(94vw, 26rem);
+    padding: 1.15rem 1.1rem 1.25rem;
+    gap: 0.85rem;
+  }
+
+  #settings h1 {
+    font-size: 1.18rem;
+  }
+
+  .settings-checkboxes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .settings-checkbox {
+    padding: 0.48rem 0.3rem;
+  }
+
+  .settings-checkbox p {
+    font-size: 0.76rem;
+  }
+
+  .settings-checkbox::after {
+    font-size: 0.62rem;
+  }
+
+  #credit {
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    gap: 0.32rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .settings-checkboxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .settings-checkbox:nth-child(3):last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-height: 540px) {
+  body {
+    padding: 0.75rem 1rem 0.65rem;
+    gap: 0.65rem;
+  }
+
+  #hero {
+    gap: 0.75rem;
+  }
+
+  #banner {
+    width: min(65%, 16.5rem);
+  }
+
+  #buttons-section {
+    padding: 1rem 1.2rem 1.15rem;
+    gap: 0.75rem;
+  }
+
+  .button {
+    height: 2.95rem;
+  }
+
+  .button-settings {
+    width: 2.95rem;
+  }
+
+  #settings {
+    padding: 1rem 1.2rem 1.1rem;
+    gap: 0.7rem;
+  }
+}

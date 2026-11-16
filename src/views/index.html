@@ -1,55 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap"
+    />
     <link rel="stylesheet" href="../css/default.css" />
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/settings.css" />
+    <link rel="stylesheet" href="../css/resize.css" />
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon" />
     <script src="../js/main.js" defer></script>
     <script src="../js/settings.js" defer></script>
     <script src="../js/run.js" defer></script>
-    <title>oops something broke</title>
+    <title>CerolingoBM</title>
   </head>
   <body>
-    <section id="settings"></section>
-    <img id="img-title" src="../img/cerolingobm-title.svg" alt="" />
-    <section id="buttons-section">
-      <div class="buttons">
-        <div id="create-account" class="button">
-          <div class="button-text">Create<br />Account(s)</div>
-          <div class="button-settings">
-            <img src="../img/settings.svg" alt="" />
-          </div>
-        </div>
-        <div id="farm" class="button">
-          <div class="button-text">Farm<br />Xp</div>
-          <div class="button-settings">
-            <img src="../img/settings.svg" alt="" />
-          </div>
-        </div>
-      </div>
-      <div class="buttons">
-        <div id="manage-accounts" class="button">
-          <div class="button-text">Manage<br />Accounts</div>
-        </div>
-        <div class="button">
-          <div class="button-text">Soon</div>
-        </div>
-      </div>
-    </section>
+    <div id="settings-backdrop"></div>
+    <section id="settings" aria-hidden="true"></section>
 
-    <div class="selfpromo">
+    <main id="hero">
+      <section id="banner">
+        <img
+          id="img-title"
+          src="../img/cerolingobm-title.svg"
+          alt="Cerolingo Bot Manager"
+        />
+      </section>
+
+      <section id="buttons-section">
+        <div class="buttons">
+          <div id="create-account" class="button">
+            <div class="button-text">Create Account(s)</div>
+            <div class="button-settings" title="Account Botting Settings">
+              <img src="../img/settings.svg" alt="Settings" />
+            </div>
+          </div>
+
+          <div id="farm" class="button">
+            <div class="button-text">Farm XP</div>
+            <div class="button-settings" title="XP Farm Settings">
+              <img src="../img/settings.svg" alt="Settings" />
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <div id="manage-accounts" class="button">
+            <div class="button-text">Manage Accounts</div>
+          </div>
+
+          <div id="solver" class="button">
+            <div class="button-text">Auto Solver</div>
+            <div class="button-settings" title="Auto Solver Settings">
+              <img src="../img/settings.svg" alt="Settings" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside id="update-toast" role="status" hidden>
+      <span id="update-text"></span>
+      <button id="update-install" type="button">Update</button>
+      <button id="update-later" type="button" class="ghost">Later</button>
+    </aside>
+
+    <footer id="credit" class="selfpromo">
+      <span>Made by</span>
+      <a href="https://github.com/ancym0n" target="_blank" rel="noopener"
+        >ancym0n</a
+      >
+      <span class="credit-sep">·</span>
       <a
         class="github"
-        href="https://github.com/ancym0n"
+        href="https://github.com/ancym0n/Cerolingo-Bot-Manager"
         target="_blank"
         rel="noopener"
       >
-        ancym0n
         <img src="../img/github-mark-white.svg" alt="" />
+        <span>Source Code</span>
       </a>
-    </div>
+      <span class="credit-sep">·</span>
+      <a
+        href="https://github.com/ancym0n/Cerolingo-Bot-Manager/issues"
+        target="_blank"
+        rel="noopener"
+        class="report-link"
+        >Report a bug</a
+      >
+      <span class="credit-sep">·</span>
+      <span id="version">v1.1.0</span>
+    </footer>
   </body>
 </html>

@@ -1,32 +1,86 @@
-@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Poppins:ital,wght@0,300;0,400;1,300&display=swap");
+:root {
+  --bg-dark: #131f24;
+  --panel-bg: #18272e;
+  --background-color: #7b93ff;
+  --dark-main-color: #6877fe;
+  --border-color: #6877fe;
+  --main-color: #a1b2ff;
+  --text-color: #a1b2ff;
+  --light-main-color: #b3d0ff;
+  --highlight-color: #b3d0ff;
+  --title-color: #e7ecff;
+  --alt-main-color: #7385fa;
+  --accent-dark-bg: #253366;
+  --accent-dark-hover: #2e3f7d;
+  --accent-border: #8fa4ff;
+  --green-color: #7bffd0;
+  --dark-green-color: #5fc18c;
+  --red-color: #ff8585;
+  --dark-red-color: #c95353;
+  --spring-ease: cubic-bezier(0.34, 1.22, 0.64, 1);
+}
+
+@keyframes cerolingoLoadIn {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(14px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+}
 
 * {
-  margin: none;
-  padding: none;
-  --background-color: #7b93ff;
-  --border-color: #6877ff;
-  --title-color: #e7ecff;
-  --text-color: #a1b2ff;
-  --highlight-color: #b3d0ff;
-  transition: all 0.3s;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--bg-dark);
+  color: var(--title-color);
 }
 
 body {
-  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1rem, 3vh, 1.75rem) clamp(1rem, 4vw, 2rem)
+    clamp(0.85rem, 2.2vh, 1.25rem);
 }
 
 h1,
 h2,
 h3,
-p,
 a,
-div,
-label,
-input {
-  font-family: "Dongle", sans-serif;
+button {
+  font-weight: 800;
   color: var(--title-color);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+}
+
+p,
+label,
+span,
+input {
+  font-weight: 700;
+  color: var(--title-color);
+}
+
+img {
+  -webkit-user-drag: none;
 }
