@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap"
+    />
+    <link rel="preload" href="../src/img/cerolingobm-logo.png" as="image" />
+    <link rel="stylesheet" href="../src/css/main.css" />
+    <link rel="stylesheet" href="../src/css/content.css" />
+    <link rel="stylesheet" href="../src/css/banner.css" />
+    <link rel="stylesheet" href="../src/css/privacy.css" />
+    <link rel="stylesheet" href="../src/css/resize.css" />
+    <link rel="stylesheet" href="../src/css/hover.css" />
+    <script>
+      document.documentElement.classList.add("is-booting");
+      // Failsafe: never keep the loader up if main.js fails to load
+      setTimeout(function () {
+        document.documentElement.classList.remove("is-booting");
+      }, 4000);
+    </script>
+    <link rel="stylesheet" href="../src/css/loader.css" />
+    <script src="../src/js/main.js" defer></script>
+    <link
+      rel="shortcut icon"
+      href="../src/img/cerolingobm-logo.png"
+      type="image/x-icon"
+    />
+    <title>CerolingoBM - Privacy Policy</title>
+  </head>
+  <body>
+    <div id="loader" role="status" aria-live="polite">
+      <div class="loader-stage">
+        <div class="loader-card">
+          <img
+            class="loader-logo"
+            src="../src/img/cerolingobm-logo.png"
+            alt=""
+          />
+          <div class="loader-shadow" aria-hidden="true"></div>
+          <div class="loader-bar" aria-hidden="true"><span></span></div>
+          <p class="loader-text">Loading CerolingoBM…</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="banner">
+      <a href="../" id="banner-logo" aria-label="Back to home">
+        <img src="../src/img/cerolingobm-title.png" alt="CerolingoBM" />
+      </a>
+      <a
+        href="https://github.com/ancym0n/Cerolingo-Bot-Manager/releases"
+        target="_blank"
+        rel="noopener"
+        id="version"
+        aria-label="Latest GitHub release"
+      ></a>
+    </section>
+
+    <section id="content">
+      <h1>Download now!</h1>
+      <div id="stats" hidden>
+        <span id="total-downloads" class="stat-item" hidden></span>
+        <a
+          id="github-stars"
+          class="stat-item"
+          href="https://github.com/ancym0n/Cerolingo-Bot-Manager/stargazers"
+          target="_blank"
+          rel="noopener"
+          hidden
+        ></a>
+      </div>
+      <div>
+        <a
+          href="https://github.com/ancym0n/Cerolingo-Bot-Manager/releases"
+          target="_blank"
+          rel="noopener"
+          >Latest Version</a
+        >
+        <a
+          href="https://github.com/ancym0n/Cerolingo-Bot-Manager"
+          target="_blank"
+          rel="noopener"
+          >Source Code</a
+        >
+      </div>
+    </section>
+
+    <section id="privacy">
+      <h1>Privacy Policy</h1>
+      <p id="last-updated" aria-busy="true">
+        Last updated:
+        <a
+          id="last-updated-date"
+          data-fallback="2026-11-16T16:41:00+01:00"
+          href="https://github.com/ancym0n/Cerolingo-Bot-Manager/commits/page"
+          target="_blank"
+          rel="noopener"
+          ><span class="date-skeleton" aria-hidden="true"></span
+        ></a>
+      </p>
+
+      <div>
+        <h2>1. Overview of Data Practices</h2>
+        <p>
+          CerolingoBM is a desktop app that runs on your own computer. It has no
+          servers, no user accounts, and no analytics. It does not send any
+          information to the developer, and nothing you enter in the app ever
+          leaves your device except for the requests to Duolingo described below.
+        </p>
+      </div>
+
+      <div>
+        <h2>2. What Is Stored on Your Device</h2>
+        <p>
+          The app saves your settings (lessons per account, mode toggles,
+          username prefix, and email prefix and domain) in the local storage of
+          the app window. Accounts created by the app are saved to
+          <i>accounts.txt</i> inside the app's <i>python/logs</i> folder. Each
+          entry contains the email, the password, and the session cookies of that
+          account, including its login token, and it is stored as plain text. The
+          <strong>Manage Accounts</strong> button simply opens that file in your
+          default text editor. Delete the file or uninstall the app to remove
+          this data.
+        </p>
+      </div>
+
+      <div>
+        <h2>3. Network Connections</h2>
+        <p>
+          The app only talks to Duolingo (<i>duolingo.com</i>) to register
+          accounts, send XP session requests with your saved tokens, and load
+          Duolingo in a browser window for the auto solver. What Duolingo does
+          with that traffic is covered by its own privacy policy. The app window
+          also loads the <i>Nunito</i> font from Google Fonts, so Google can see
+          your IP address when it opens.
+        </p>
+        <p>
+          If Selenium, Requests, or Playwright are missing, the Python scripts
+          install them from PyPI, and Playwright may download a Chromium build.
+          Links in the app open in your default browser. There is no telemetry,
+          crash reporting, or automatic update check.
+        </p>
+      </div>
+
+      <div>
+        <h2>4. Browser Automation</h2>
+        <p>
+          Creating accounts launches Chrome through ChromeDriver, and the auto
+          solver launches Chromium through Playwright. Both run locally with a
+          fresh temporary profile, not your own, so your personal bookmarks,
+          cookies, and history are not touched. Closing the window ends the
+          session.
+        </p>
+      </div>
+
+      <div>
+        <h2>5. This Website</h2>
+        <p>
+          This site does not use cookies or analytics. Your browser loads fonts
+          from Google Fonts, and the page asks the GitHub API and shields.io for
+          the latest release, download count, and star count, so those services
+          can see your IP address. The last updated date is cached in your
+          browser's session storage until you close the tab.
+        </p>
+      </div>
+
+      <div>
+        <h2>6. Core Compliance Declarations</h2>
+        <p>CerolingoBM guarantees the following:</p>
+        <ul>
+          <li>
+            <strong>No Data Collection or Sale:</strong> Nothing from the app is
+            collected, sold, or shared with third parties.
+          </li>
+          <li>
+            <strong>No Tracking:</strong> The app has no analytics, advertising,
+            or background tracking.
+          </li>
+          <li>
+            <strong>You Stay in Control:</strong> All saved data is in files on
+            your device, and the full source code is open on GitHub.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>7. Changes to This Policy</h2>
+        <p>
+          This Privacy Policy may be updated if the app changes how it handles
+          data. Any updates will be published on this page.
+        </p>
+      </div>
+
+      <a href="../" id="back-home">Back to Home</a>
+    </section>
+
+    <footer id="credit">
+      Made by
+      <a href="https://github.com/ancym0n" target="_blank" rel="noopener"
+        >ancym0n</a
+      >
+      <span class="credit-sep">·</span>
+      <a
+        href="https://github.com/ancym0n/Cerolingo-Bot-Manager/issues"
+        target="_blank"
+        rel="noopener"
+        class="report-link"
+        >Report a bug</a
+      >
+    </footer>
+  </body>
+</html>
