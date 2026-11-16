@@ -1,0 +1,172 @@
+/* ---------- Page loading screen ----------
+   Shown only when JS adds `is-booting` to <html> (no-JS visitors see the page
+   normally). While booting, the page's own entrance animations are paused so
+   they play in sequence right as the loader leaves. */
+
+#loader {
+  display: none;
+}
+
+html.is-booting {
+  overflow: hidden;
+}
+
+html.is-booting body > :not(#loader),
+html.is-booting body > :not(#loader) * {
+  animation-play-state: paused !important;
+}
+
+html.is-booting #loader,
+#loader.is-leaving {
+  --loader-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: #131f24;
+  transition: opacity 0.38s var(--loader-ease);
+}
+
+.loader-card {
+  display: grid;
+  justify-items: center;
+  gap: 1.15rem;
+  width: min(15rem, 80vw);
+  padding: 1.6rem 1.6rem 1.75rem;
+  background-color: var(--panel-bg, #18272e);
+  border: 2px solid var(--dark-main-color, #6877fe);
+  border-radius: 18px;
+  box-shadow: 0 0.45rem 0 0 var(--dark-main-color, #6877fe);
+  opacity: 0;
+  animation: cerolingoLoadIn 0.45s var(--spring-ease) 0.05s forwards;
+}
+
+/* Exit transforms live on a wrapper so they don't fight the card's
+   entrance animation fill */
+.loader-stage {
+  transition:
+    transform 0.38s var(--loader-ease),
+    opacity 0.3s ease;
+}
+
+.loader-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: block;
+  will-change: transform;
+  animation: loaderBob 1.6s var(--spring-ease) infinite;
+}
+
+.loader-shadow {
+  width: 2.8rem;
+  height: 0.35rem;
+  margin-top: -0.85rem;
+  border-radius: 50%;
+  background: rgba(104, 119, 254, 0.28);
+  animation: loaderShadow 1.6s var(--spring-ease) infinite;
+}
+
+.loader-bar {
+  position: relative;
+  width: 100%;
+  height: 0.85rem;
+  overflow: hidden;
+  background-color: rgba(104, 119, 254, 0.12);
+  border: 2px solid var(--dark-main-color, #6877fe);
+  border-radius: 999px;
+}
+
+/* Real progress, driven from JS via --progress (0..1) */
+.loader-bar > span {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0.08));
+  background-color: var(--background-color, #7b93ff);
+  border-radius: inherit;
+  will-change: transform;
+  transition: transform 0.3s var(--loader-ease);
+}
+
+/* Soft moving highlight so it never looks frozen */
+.loader-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(231, 236, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  will-change: transform;
+  animation: loaderSheen 1.3s ease-in-out infinite;
+}
+
+.loader-text {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--main-color, #a1b2ff);
+  letter-spacing: 0.02em;
+  margin-top: -0.35rem;
+}
+
+/* Exit: card lifts + fades away, backdrop fades, page animates in beneath */
+#loader.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loader.is-leaving .loader-stage {
+  opacity: 0;
+  transform: translateY(-8px) scale(1.03);
+}
+
+@keyframes loaderBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes loaderShadow {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.7);
+    opacity: 0.55;
+  }
+}
+
+@keyframes loaderSheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-logo,
+  .loader-shadow,
+  .loader-bar::after {
+    animation: none;
+  }
+
+  .loader-card {
+    animation-duration: 0.01s;
+  }
+}
