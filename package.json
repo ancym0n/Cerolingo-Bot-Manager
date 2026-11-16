@@ -1,28 +1,98 @@
 {
   "name": "cerolingo-bot-manager",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-builder --linux AppImage zip --win nsis zip --x64",
+    "make:linux": "electron-builder --linux AppImage zip --x64",
+    "make:win": "electron-builder --win nsis zip --x64",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
-  "author": "ancym0n",
+  "author": {
+    "name": "ancym0n",
+    "email": "ancym0n@users.noreply.github.com"
+  },
   "license": "ISC",
   "description": "Simple Duolingo bot managing tool",
   "devDependencies": {
-    "@electron-forge/cli": "^7.6.1",
-    "@electron-forge/maker-deb": "^7.6.1",
-    "@electron-forge/maker-rpm": "^7.6.1",
-    "@electron-forge/maker-squirrel": "^7.6.1",
-    "@electron-forge/maker-zip": "^7.6.1",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.6.1",
-    "@electron-forge/plugin-fuses": "^7.6.1",
-    "@electron/fuses": "^1.8.0",
-    "electron": "^34.0.2"
+    "electron": "^34.0.2",
+    "electron-builder": "^26.18.0",
+    "prettier": "3.10.1"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+  "homepage": "https://github.com/ancym0n/Cerolingo-Bot-Manager",
+  "build": {
+    "appId": "com.ancym0n.cerolingo-bot-manager",
+    "productName": "Cerolingo Bot Manager",
+    "copyright": "Copyright © ancym0n",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "artifactName": "CBMv${version}-${os}.${arch}.${ext}",
+    "files": [
+      "index.js",
+      "package.json",
+      "src/**/*",
+      "!src/python/**",
+      "!src/img/logo.svg"
+    ],
+    "extraResources": [
+      {
+        "from": "src/python",
+        "to": "python",
+        "filter": [
+          "**/*",
+          "!logs/**",
+          "!cache/**",
+          "!**/__pycache__/**",
+          "!**/*.pyc"
+        ]
+      }
+    ],
+    "asar": true,
+    "linux": {
+      "target": [
+        "AppImage",
+        "zip"
+      ],
+      "icon": "build/logo.png",
+      "category": "Utility",
+      "maintainer": "ancym0n"
+    },
+    "appImage": {
+      "artifactName": "CBMv${version}-linux.x64.AppImage"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "build/logo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cerolingo Bot Manager",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "CBMv${version}-win.x64-setup.exe",
+      "installerIcon": "build/logo.ico",
+      "uninstallerIcon": "build/logo.ico",
+      "installerHeaderIcon": "build/logo.ico",
+      "installerSidebar": "build/installer/sidebar.bmp",
+      "uninstallerSidebar": "build/installer/uninstallerSidebar.bmp",
+      "installerHeader": "build/installer/header.bmp",
+      "include": "build/installer.nsh"
+    },
+    "electronLanguages": [
+      "en-US"
+    ],
+    "compression": "maximum"
   }
 }
