@@ -1,0 +1,10 @@
+dist
+out
+tmp
+node_modules
+*.zip
+*.pyc
+__pycache__
+.env
+src/python/logs
+src/python/cache
