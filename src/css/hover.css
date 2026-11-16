@@ -1,19 +1,65 @@
-a:hover,
-#faq h1:hover {
-  transform: rotate(-5deg) scale(1.1);
-  color: var(--title-color);
-}
-
-h2:hover,
-p:hover {
-  transform: scale(1.05);
-  color: var(--title-color);
-}
-
 a:hover {
-  color: var(--dark-main-color);
+  background-color: #889eff;
+  transform: translateY(-2px);
+  box-shadow: 0 calc(0.42rem + 2px) 0 0 var(--dark-main-color);
+  color: #ffffff;
 }
 
-#faq > div:hover {
-  scale: 1.1;
+a:active {
+  transform: translateY(3px);
+  box-shadow: 0 0.16rem 0 0 var(--dark-main-color);
+}
+
+a.stat-item:hover,
+a.stat-item:active {
+  background: none;
+  box-shadow: none;
+  transform: none;
+  color: var(--title-color);
+  text-decoration: underline;
+}
+
+#banner-logo:hover,
+#banner-logo:active {
+  background: none;
+  box-shadow: none;
+  transform: scale(1.02);
+}
+
+#version:hover,
+#version:active {
+  background: none;
+  box-shadow: none;
+  transform: translateY(-1px);
+  color: var(--title-color);
+}
+
+#scroll-cue:hover {
+  background-color: #1f323b;
+  color: var(--title-color);
+  transform: none;
+  translate: 0 -2px;
+  box-shadow: 0 calc(0.34rem + 2px) 0 0 var(--dark-main-color);
+}
+
+#scroll-cue:active {
+  transform: none;
+  translate: 0 2px;
+  box-shadow: 0 0.14rem 0 0 var(--dark-main-color);
+}
+
+#credit a:hover,
+#credit a:active {
+  background: none;
+  box-shadow: none;
+  transform: none;
+  color: var(--title-color);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+#faq > div:hover,
+#privacy > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 calc(0.38rem + 2px) 0 0 var(--dark-main-color);
 }
