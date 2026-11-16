@@ -1,5 +1,28 @@
-import os, subprocess
-script_dir = os.path.dirname(os.path.realpath(__file__))
-accounts_path = os.path.join(script_dir, "logs", "accounts.txt")
-subprocess.run(["notepad.exe", accounts_path])
-print("Opened accounts.txt\n > Path: "+accounts_path)
+"""Open accounts.txt in the system's default editor."""
+
+import os
+import subprocess
+import sys
+
+import env
+import ui
+
+
+def main():
+    path = env.ACCOUNTS_PATH
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    if not os.path.exists(path):
+        open(path, "w", encoding="utf-8").close()
+
+    if sys.platform == "win32":
+        os.startfile(path)  # noqa: S606 - opens with the registered editor
+    else:
+        subprocess.Popen(["open" if sys.platform == "darwin" else "xdg-open", path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    ui.banner("Account Manager")
+    ui.ok("Opened accounts.txt")
+    ui.dim(path)
+    ui.dim("Format: email:password:cookie  (one account per line)")
+
+
+if __name__ == "__main__":
+    main()
