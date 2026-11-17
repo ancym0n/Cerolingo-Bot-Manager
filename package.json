@@ -1,7 +1,7 @@
 {
   "name": "cerolingo-bot-manager",
   "desktopName": "cerolingo-bot-manager.desktop",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
