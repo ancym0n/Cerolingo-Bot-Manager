@@ -1,4 +1,4 @@
-# CerolingoBM
+# Cerolingo Bot Manager
 
 ![Version](https://img.shields.io/github/v/release/ancym0n/Cerolingo-Bot-Manager?color=6877ff&label=Version&labelColor=e7ecff&style=flat)
 [![Website](https://img.shields.io/badge/Website-ancymon.dev-6877ff?labelColor=e7ecff&logo=globe&logoColor=white)](https://ancymon.dev/CerolingoBM/)
@@ -21,7 +21,7 @@ Desktop application for creating and managing Duolingo bot accounts, farming XP,
 
 ### Ready-made builds (recommended)
 
-Download the latest build from the releases page: `CBMv<version>-win.x64-setup.exe` (Windows installer), `CBMv<version>-win.x64.zip`, `CBMv<version>-linux.x64.AppImage` or `CBMv<version>-linux.x64.zip`.
+Download the latest build from the releases page: `CBMv<version>-win.x64-setup.exe` (Windows installer), `CBMv<version>-win.x64.zip`, `Cerolingo-Bot-Manager-<version>-x86_64.AppImage` or `CBMv<version>-linux.x64.zip`.
 
 You do **not** need Node.js, Python or Playwright. On first launch (when you press any bot button) the app downloads a private Python, installs `playwright` + `requests` and downloads Chromium into its own data folder, showing a progress window. This needs an internet connection and takes a few minutes, once. On Linux, Chromium still needs the usual system libraries (nss, gtk3, etc.), which are normally present on desktop distros.
 
