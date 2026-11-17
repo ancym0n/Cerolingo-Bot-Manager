@@ -169,9 +169,10 @@
       <div>
         <h2>2. What is CerolingoBM?</h2>
         <p>
-          CerolingoBM stands for <i>Cerolingo Bot Manager</i>. It is a desktop
-          application built to automate creating Duolingo accounts and managing
-          them in bulk, including completing lessons and farming XP.
+          CerolingoBM stands for <i>Cerolingo Bot Manager</i>. It is a
+          cross-platform desktop application built to automate creating Duolingo
+          accounts, managing them in bulk, farming XP, and auto-solving lessons
+          with the Cerolingo mod menu.
         </p>
       </div>
 
@@ -181,8 +182,12 @@
           CerolingoBM includes an <strong>Account Creator</strong> with custom
           username and email prefixes, automatic
           <strong>Leaderboard Qualification</strong>, bulk
-          <strong>XP Farming</strong> across saved accounts, built-in
-          <strong>Loop</strong> and <strong>Console</strong> modes, and an
+          <strong>XP Farming</strong> across saved accounts (with both a fast API
+          mode and a <strong>Legit</strong> browser lesson mode), an interactive
+          <strong>Auto Solver</strong> powered by the in-page Cerolingo mod menu,
+          built-in <strong>Loop</strong>, <strong>Hidden</strong>, and
+          <strong>Console</strong> modes, optional
+          <strong>GitHub Updates</strong>, and an
           <strong>Account Manager</strong> that stores credentials and session
           tokens locally.
         </p>
@@ -191,19 +196,29 @@
       <div>
         <h2>4. How does it work?</h2>
         <p>
-          The app pairs an Electron dashboard with Python automation scripts.
-          Account creation uses Selenium and ChromeDriver to register accounts
-          and grab session cookies, while XP farming sends direct session
-          requests using saved tokens from <i>accounts.txt</i>.
+          The app pairs an Electron dashboard with Python automation scripts
+          (<i>createAccount.py</i>, <i>farmXp.py</i>, <i>autoSolver.py</i>,
+          <i>solver.py</i>, <i>lessons.py</i>, and <i>manageAccounts.py</i>)
+          powered by <strong>Playwright</strong> and <strong>Requests</strong>.
+          On first launch, CerolingoBM automatically sets up a private Python
+          runtime, installs its dependencies, and downloads Chromium into its
+          own data folder—no manual setup required. Account creation and Legit
+          XP farming automate Chromium via Playwright, fast XP farming sends
+          direct session requests using saved tokens from <i>accounts.txt</i>,
+          and the Auto Solver dynamically fetches and caches the latest
+          <i>Cerolingo</i> extension mod menu from GitHub.
         </p>
       </div>
 
       <div>
         <h2>5. Which operating systems are supported?</h2>
         <p>
-          CerolingoBM is currently built for Windows since it relies on bundled
-          <i>.exe</i> binaries and Windows utilities. Support for other
-          operating systems may be added in future updates.
+          CerolingoBM natively supports both <strong>Windows</strong> and
+          <strong>Linux</strong> (64-bit). Ready-made builds are available as a
+          Windows setup installer (<i>.exe</i>), Linux <i>.AppImage</i> (plus
+          distro packages when available), and portable <i>.zip</i> archives—the
+          <strong>Download Manager</strong> above automatically detects your
+          system and recommends the best package.
         </p>
       </div>
     </section>

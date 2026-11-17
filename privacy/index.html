@@ -117,7 +117,7 @@
         Last updated:
         <a
           id="last-updated-date"
-          data-fallback="2026-11-16T16:41:00+01:00"
+          data-fallback="2026-11-17T17:45:00+01:00"
           href="https://github.com/ancym0n/Cerolingo-Bot-Manager/commits/page"
           target="_blank"
           rel="noopener"
@@ -131,62 +131,80 @@
           CerolingoBM is a desktop app that runs on your own computer. It has no
           servers, no user accounts, and no analytics. It does not send any
           information to the developer, and nothing you enter in the app ever
-          leaves your device except for the requests to Duolingo described below.
+          leaves your device except for the requests to Duolingo and GitHub
+          described below.
         </p>
       </div>
 
       <div>
         <h2>2. What Is Stored on Your Device</h2>
         <p>
-          The app saves your settings (lessons per account, mode toggles,
-          username prefix, and email prefix and domain) in the local storage of
-          the app window. Accounts created by the app are saved to
-          <i>accounts.txt</i> inside the app's <i>python/logs</i> folder. Each
-          entry contains the email, the password, and the session cookies of that
-          account, including its login token, and it is stored as plain text. The
-          <strong>Manage Accounts</strong> button simply opens that file in your
-          default text editor. Delete the file or uninstall the app to remove
-          this data.
+          The app saves your settings (account creator options, XP farm settings,
+          Legit/Hidden/Console mode toggles, and auto solver preferences) in the
+          local storage of the app window. Accounts created by the app are saved
+          to <i>accounts.txt</i> inside the app's user data <i>logs</i> folder
+          (or <i>src/python/logs/accounts.txt</i> when running from source). Each
+          entry contains the email, password, and session token of that account
+          stored as plain text. The <strong>Manage Accounts</strong> button
+          opens that file in your default text editor.
+        </p>
+        <p>
+          On first launch, the app also stores its private Python runtime and
+          Playwright Chromium browser inside its user data <i>runtime</i>
+          directory, and caches the downloaded Cerolingo mod menu bundle in
+          <i>cache/solver-bundle.js</i>. Delete these folders or uninstall the
+          app to remove all local data.
         </p>
       </div>
 
       <div>
         <h2>3. Network Connections</h2>
         <p>
-          The app only talks to Duolingo (<i>duolingo.com</i>) to register
-          accounts, send XP session requests with your saved tokens, and load
-          Duolingo in a browser window for the auto solver. What Duolingo does
-          with that traffic is covered by its own privacy policy. The app window
-          also loads the <i>Nunito</i> font from Google Fonts, so Google can see
-          your IP address when it opens.
+          The app talks to Duolingo (<i>duolingo.com</i>) to register accounts,
+          send XP session requests with your saved tokens, and run interactive
+          or automated lessons in Playwright. What Duolingo does with that
+          traffic is covered by its own privacy policy. The app window also
+          loads the <i>Nunito</i> font from Google Fonts, so Google can see your
+          IP address when it opens.
         </p>
         <p>
-          If Selenium, Requests, or Playwright are missing, the Python scripts
-          install them from PyPI, and Playwright may download a Chromium build.
-          Links in the app open in your default browser. There is no telemetry,
-          crash reporting, or automatic update check.
+          On first launch, if the local runtime is not set up yet, the app
+          downloads a standalone Python build from GitHub
+          (<i>python-build-standalone</i>), installs <i>playwright</i>,
+          <i>requests</i>, and <i>certifi</i> from PyPI, and downloads a
+          Chromium build via Playwright. When running the
+          <strong>Auto Solver</strong> or <strong>Legit XP Farming</strong>,
+          <i>solver.py</i> fetches the latest Cerolingo extension scripts from
+          GitHub (<i>raw.githubusercontent.com/ancym0n/Cerolingo</i>) and caches
+          them locally for offline fallback. On startup, the app also checks
+          GitHub Releases
+          (<i>api.github.com/repos/ancym0n/Cerolingo-Bot-Manager/releases/latest</i>)
+          to offer optional updates. There is no telemetry or crash reporting.
         </p>
       </div>
 
       <div>
         <h2>4. Browser Automation</h2>
         <p>
-          Creating accounts launches Chrome through ChromeDriver, and the auto
-          solver launches Chromium through Playwright. Both run locally with a
-          fresh temporary profile, not your own, so your personal bookmarks,
-          cookies, and history are not touched. Closing the window ends the
-          session.
+          Account creation, Legit XP farming, and the Auto Solver launch
+          Chromium through <strong>Playwright</strong> (either visible or in
+          <strong>Hidden</strong> background mode). Every session runs locally
+          with an isolated temporary profile rather than your personal browser
+          profile, so your bookmarks, cookies, and browsing history are never
+          touched. Closing the window or stopping the bot ends the session.
         </p>
       </div>
 
       <div>
         <h2>5. This Website</h2>
         <p>
-          This site does not use cookies or analytics. Your browser loads fonts
-          from Google Fonts, and the page asks the GitHub API and shields.io for
-          the latest release, download count, and star count, so those services
-          can see your IP address. The last updated date is cached in your
-          browser's session storage until you close the tab.
+          This site does not use tracking cookies or analytics. Your browser
+          loads fonts from Google Fonts, and the page queries the GitHub API and
+          shields.io for the latest release packages, download count, and star
+          count, so those services can see your IP address. The Download Manager
+          caches the latest release metadata in your browser's local storage, and
+          the last updated date is cached in session storage until you close the
+          tab.
         </p>
       </div>
 
