@@ -34,7 +34,7 @@ function pickAsset(assets) {
   const find = (re) => assets.find((a) => re.test(a.name));
   if (process.platform === "win32") return find(/win\.x64-setup\.exe$/i);
   if (process.platform === "linux" && process.env.APPIMAGE)
-    return find(/linux\.x64\.AppImage$/i);
+    return find(/\.AppImage$/i);
   return null; // zip / dev / macOS builds: just open the release page
 }
 

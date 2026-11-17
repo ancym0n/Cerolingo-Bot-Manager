@@ -179,6 +179,10 @@ function createWindow() {
   return mainWindow;
 }
 
+if (process.platform === "linux") {
+  app.commandLine.appendSwitch("no-sandbox");
+}
+
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) app.quit();
 
