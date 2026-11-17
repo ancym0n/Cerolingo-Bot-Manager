@@ -1,6 +1,6 @@
 ; Custom NSIS texts for the Cerolingo Bot Manager installer
 !macro customHeader
-  BrandingText "Cerolingo Bot Manager  |  by ancym0n"
+  BrandingText "Cerolingo Bot Manager  |  by ancymon"
 
   !define MUI_WELCOMEPAGE_TITLE "Welcome to Cerolingo Bot Manager"
   !define MUI_WELCOMEPAGE_TEXT "This wizard will install Cerolingo Bot Manager on your computer.$\r$\n$\r$\nPython, Playwright and Chromium are downloaded automatically on first launch, so an internet connection is needed then.$\r$\n$\r$\nClick Next to continue."

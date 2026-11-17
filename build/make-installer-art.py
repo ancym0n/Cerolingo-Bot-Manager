@@ -39,7 +39,7 @@ s.paste(l, (22, 40), l)
 d.text((82, 185), "Cerolingo", font=f(21), fill=(255, 255, 255), anchor="mm")
 d.text((82, 208), "Bot Manager", font=f(14), fill=ACC, anchor="mm")
 d.rounded_rectangle((52, 230, 112, 234), 2, fill=ACC2)
-d.text((82, 290), "by ancym0n", font=f(11), fill=(143, 164, 255), anchor="mm")
+d.text((82, 290), "by ancymon", font=f(11), fill=(143, 164, 255), anchor="mm")
 s.save(os.path.join(out, "sidebar.bmp"))
 s.save(os.path.join(out, "uninstallerSidebar.bmp"))
 

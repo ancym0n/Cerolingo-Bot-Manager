@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "ancym0n",
+    "name": "ancymon",
     "email": "ancym0n@users.noreply.github.com"
   },
   "license": "ISC",
@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/ancym0n/Cerolingo-Bot-Manager",
   "build": {
-    "appId": "com.ancym0n.cerolingo-bot-manager",
+    "appId": "com.ancymon.cerolingo-bot-manager",
     "productName": "Cerolingo Bot Manager",
-    "copyright": "Copyright © ancym0n",
+    "copyright": "Copyright © ancymon",
     "directories": {
       "output": "dist",
       "buildResources": "build"
@@ -61,10 +61,12 @@
       ],
       "icon": "build/logo.png",
       "category": "Utility",
-      "maintainer": "ancym0n"
+      "maintainer": "ancymon",
+      "syncDesktopName": true
     },
     "appImage": {
-      "artifactName": "CBMv${version}-linux.x64.AppImage"
+      "artifactName": "Cerolingo-Bot-Manager-${version}-x86_64.AppImage",
+      "compression": "gzip"
     },
     "win": {
       "target": [
