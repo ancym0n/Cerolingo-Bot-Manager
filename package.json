@@ -62,7 +62,10 @@
       "icon": "build/logo.png",
       "category": "Utility",
       "maintainer": "ancymon",
-      "syncDesktopName": true
+      "syncDesktopName": true,
+      "executableArgs": [
+        "--no-sandbox"
+      ]
     },
     "appImage": {
       "artifactName": "Cerolingo-Bot-Manager-${version}-x86_64.AppImage",
@@ -96,6 +99,6 @@
     "electronLanguages": [
       "en-US"
     ],
-    "compression": "maximum"
+    "compression": "normal"
   }
 }

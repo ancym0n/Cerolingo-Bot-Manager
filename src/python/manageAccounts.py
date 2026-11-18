@@ -17,7 +17,16 @@ def main():
     if sys.platform == "win32":
         os.startfile(path)  # noqa: S606 - opens with the registered editor
     else:
-        subprocess.Popen(["open" if sys.platform == "darwin" else "xdg-open", path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        clean_env = os.environ.copy()
+        if sys.platform.startswith("linux") and clean_env.get("APPDIR"):
+            clean_env.pop("LD_LIBRARY_PATH", None)
+            clean_env.pop("GSETTINGS_SCHEMA_DIR", None)
+        subprocess.Popen(
+            ["open" if sys.platform == "darwin" else "xdg-open", path],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            env=clean_env,
+        )
     ui.banner("Account Manager")
     ui.ok("Opened accounts.txt")
     ui.dim(path)

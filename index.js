@@ -6,7 +6,55 @@ const os = require("os");
 const { ensureRuntime } = require("./src/js/runtime");
 const updater = require("./src/js/updater");
 
+if (process.platform === "linux" && process.env.APPDIR) {
+  const schemaDir = `${process.env.APPDIR}/usr/share/glib-2.0/schemas`;
+  if (
+    process.env.GSETTINGS_SCHEMA_DIR &&
+    !fs.existsSync(path.join(schemaDir, "gschemas.compiled"))
+  ) {
+    const cleaned = process.env.GSETTINGS_SCHEMA_DIR.split(path.delimiter)
+      .filter((p) => p && p !== schemaDir)
+      .join(path.delimiter);
+    if (cleaned) process.env.GSETTINGS_SCHEMA_DIR = cleaned;
+    else delete process.env.GSETTINGS_SCHEMA_DIR;
+  }
+}
+
 const ICON_PNG = path.join(__dirname, "src", "img", "logo.png");
+const ICON_ICO = path.join(__dirname, "build", "logo.ico");
+
+function getCleanChildEnv() {
+  const cleanEnv = { ...process.env };
+  if (process.platform === "linux" && process.env.APPDIR) {
+    delete cleanEnv.LD_LIBRARY_PATH;
+    delete cleanEnv.GSETTINGS_SCHEMA_DIR;
+  }
+  return cleanEnv;
+}
+
+function openWithCleanEnv(target) {
+  if (process.platform === "linux" && process.env.APPDIR) {
+    const cleanEnv = getCleanChildEnv();
+    try {
+      const child = spawn("xdg-open", [target], {
+        detached: true,
+        stdio: "ignore",
+        env: cleanEnv,
+      });
+      child.on("error", () => {
+        if (/^https?:\/\//.test(target)) shell.openExternal(target);
+        else shell.openPath(target);
+      });
+      child.unref();
+      return;
+    } catch (_) {}
+  }
+  if (/^https?:\/\//.test(target)) {
+    shell.openExternal(target);
+  } else {
+    shell.openPath(target);
+  }
+}
 
 function findExecutable(binaryName) {
   const pathEnv = process.env.PATH || "";
@@ -14,7 +62,16 @@ function findExecutable(binaryName) {
     process.platform === "win32"
       ? (process.env.PATHEXT || ".EXE;.CMD;.BAT").split(";")
       : [""];
-  const dirs = pathEnv.split(path.delimiter).filter(Boolean);
+  const extraDirs =
+    process.platform === "win32"
+      ? []
+      : [
+          path.join(os.homedir(), ".local", "bin"),
+          "/usr/local/bin",
+          "/usr/bin",
+          "/bin",
+        ];
+  const dirs = [...pathEnv.split(path.delimiter), ...extraDirs].filter(Boolean);
 
   for (const dir of dirs) {
     for (const ext of pathExt) {
@@ -51,7 +108,7 @@ function launchWindowsTerminal(pythonCmd, scriptPath, strArgs) {
   );
   fs.writeFileSync(batPath, lines.join("\r\n") + "\r\n");
   const child = spawn(
-    "cmd.exe",
+    process.env.ComSpec || "cmd.exe",
     ["/d", "/s", "/c", `start "Cerolingo Bot Manager" "${batPath}"`],
     {
       detached: true,
@@ -60,6 +117,7 @@ function launchWindowsTerminal(pythonCmd, scriptPath, strArgs) {
       windowsVerbatimArguments: true,
     },
   );
+  child.on("error", () => {});
   child.unref();
 }
 
@@ -78,13 +136,16 @@ function launchLinuxTerminal(command) {
     ["xterm", ["-e", "sh", "-c", holdCommand]],
   ];
 
+  const cleanEnv = getCleanChildEnv();
   for (const [bin, binArgs] of candidates) {
     const resolved = findExecutable(bin);
     if (resolved) {
       const child = spawn(resolved, binArgs, {
         detached: true,
         stdio: "ignore",
+        env: cleanEnv,
       });
+      child.on("error", () => {});
       child.unref();
       return;
     }
@@ -93,15 +154,16 @@ function launchLinuxTerminal(command) {
   const fallback = spawn("sh", ["-c", command], {
     detached: true,
     stdio: "ignore",
+    env: cleanEnv,
   });
+  fallback.on("error", () => {});
   fallback.unref();
 }
 
 async function runPythonScript(scriptName, rawArgs = []) {
   const pythonCmd = await ensureRuntime(ICON_PNG);
   return new Promise((resolve, reject) => {
-    const isDev =
-      process.defaultApp || /[\\/]electron[\\/]/.test(process.execPath);
+    const isDev = !app.isPackaged;
     const scriptPath = isDev
       ? path.join(app.getAppPath(), "src", "python", scriptName)
       : path.join(process.resourcesPath, "python", scriptName);
@@ -136,6 +198,7 @@ async function runPythonScript(scriptName, rawArgs = []) {
       const child = spawn(pythonCmd, [scriptPath, ...strArgs], {
         stdio: "ignore",
         windowsHide: true,
+        env: getCleanChildEnv(),
       });
       child.on("error", (err) => reject(new Error(`Error: ${err.message}`)));
       child.on("close", (code) =>
@@ -147,9 +210,8 @@ async function runPythonScript(scriptName, rawArgs = []) {
 
 function createWindow() {
   const iconPath =
-    process.platform === "win32" &&
-    fs.existsSync(path.join(__dirname, "build", "logo.ico"))
-      ? path.join(__dirname, "build", "logo.ico")
+    process.platform === "win32" && fs.existsSync(ICON_ICO)
+      ? ICON_ICO
       : ICON_PNG;
 
   const mainWindow = new BrowserWindow({
@@ -165,22 +227,27 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "src", "js", "preload.js"),
       contextIsolation: true,
-      sandbox: true,
+      sandbox: false,
       nodeIntegration: false,
       devTools: false,
     },
   });
 
-  mainWindow.loadFile(path.join(__dirname, "src", "views", "index.html"));
+  mainWindow
+    .loadFile(path.join(__dirname, "src", "views", "index.html"))
+    .then(() => {
+      if (!mainWindow.isDestroyed()) {
+        mainWindow.webContents.send("set-version", app.getVersion());
+      }
+    })
+    .catch(() => {});
   mainWindow.once("ready-to-show", () => {
-    mainWindow.show();
-    mainWindow.webContents.send("set-version", app.getVersion());
+    if (!mainWindow.isDestroyed()) {
+      mainWindow.show();
+      mainWindow.webContents.send("set-version", app.getVersion());
+    }
   });
   return mainWindow;
-}
-
-if (process.platform === "linux") {
-  app.commandLine.appendSwitch("no-sandbox");
 }
 
 const gotLock = app.requestSingleInstanceLock();
@@ -233,10 +300,10 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.on("open-external", (event, url) => {
-  if (!/^https?:\/\//.test(url)) {
+ipcMain.on("open-external", (_event, url) => {
+  if (!/^https?:\/\//.test(String(url || ""))) {
     console.error("URL must include http:// or https://");
     return;
   }
-  shell.openExternal(url);
+  openWithCleanEnv(String(url));
 });
