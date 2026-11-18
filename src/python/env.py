@@ -58,7 +58,13 @@ def ensure_playwright():
 def find_chromium_executable():
     candidates = []
     home = os.path.expanduser("~")
+    pw_path = os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "")
     if sys.platform == "win32":
+        if pw_path:
+            candidates += sorted(
+                glob.glob(os.path.join(pw_path, "chromium-*", "chrome-win*", "chrome.exe")),
+                reverse=True,
+            )
         local = os.environ.get("LOCALAPPDATA", "")
         if local:
             candidates += sorted(
@@ -71,12 +77,22 @@ def find_chromium_executable():
                 candidates.append(os.path.join(base, "Google", "Chrome", "Application", "chrome.exe"))
                 candidates.append(os.path.join(base, "Microsoft", "Edge", "Application", "msedge.exe"))
     elif sys.platform == "darwin":
+        if pw_path:
+            candidates += sorted(
+                glob.glob(os.path.join(pw_path, "chromium-*/chrome-mac*/Chromium.app/Contents/MacOS/Chromium")),
+                reverse=True,
+            )
         candidates += sorted(
             glob.glob(os.path.join(home, "Library/Caches/ms-playwright/chromium-*/chrome-mac*/Chromium.app/Contents/MacOS/Chromium")),
             reverse=True,
         )
         candidates.append("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
     else:
+        if pw_path:
+            candidates += sorted(
+                glob.glob(os.path.join(pw_path, "chromium-*/chrome-linux*/chrome")),
+                reverse=True,
+            )
         candidates += sorted(
             glob.glob(os.path.join(home, ".cache/ms-playwright/chromium-*/chrome-linux*/chrome")),
             reverse=True,
