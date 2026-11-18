@@ -99,9 +99,14 @@ function sha256File(file) {
 
 function run(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
+    const childEnv = { ...process.env };
+    if (process.platform === "linux" && process.env.APPDIR) {
+      delete childEnv.LD_LIBRARY_PATH;
+      delete childEnv.GSETTINGS_SCHEMA_DIR;
+    }
     const child = spawn(cmd, args, {
       windowsHide: true,
-      env: process.env,
+      env: childEnv,
       ...opts,
     });
     let tail = "";
@@ -149,10 +154,16 @@ function openProgressWindow(iconPath) {
     backgroundColor: "#131f24",
     icon: iconPath,
     title: "Cerolingo Bot Manager - Setup",
-    webPreferences: { contextIsolation: true, nodeIntegration: false },
+    webPreferences: {
+      contextIsolation: true,
+      sandbox: false,
+      nodeIntegration: false,
+    },
   });
   win.setMenuBarVisibility(false);
-  win.loadURL("data:text/html;charset=utf-8," + encodeURIComponent(PAGE));
+  win
+    .loadURL("data:text/html;charset=utf-8," + encodeURIComponent(PAGE))
+    .catch(() => {});
   const ready = new Promise((r) => win.webContents.once("did-finish-load", r));
   const call = async (fn, ...args) => {
     await ready;
@@ -192,7 +203,16 @@ async function install(ui) {
   if ((await sha256File(archive)) !== asset.sha256)
     throw new Error("Python archive checksum mismatch");
   ui.set(0.33, "Extracting Python...");
-  await run("tar", ["-xzf", archive, "-C", root]);
+  const sysTar =
+    process.platform === "win32"
+      ? path.join(
+          process.env.SystemRoot || "C:\\Windows",
+          "System32",
+          "tar.exe",
+        )
+      : null;
+  const tarCmd = sysTar && fs.existsSync(sysTar) ? sysTar : "tar";
+  await run(tarCmd, ["-xzf", archive, "-C", root]);
   fs.rmSync(archive, { force: true });
   if (!fs.existsSync(pythonPath()))
     throw new Error("Python executable not found after extraction");
