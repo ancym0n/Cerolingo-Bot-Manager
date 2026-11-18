@@ -13,3 +13,7 @@ Official landing page and FAQ site for the CerolingoBM desktop application.
 - [ancymon.dev/Cerolingo-Bot-Manager/privacy](https://ancymon.dev/Cerolingo-Bot-Manager/privacy) - App privacy policy
 - [Latest Release](https://github.com/ancym0n/Cerolingo-Bot-Manager/releases)
 - [GitHub Repository](https://github.com/ancym0n/Cerolingo-Bot-Manager)
+
+## Cerolingo Extension
+
+Just want the in-page mod menu and auto-solver inside your own browser without the desktop bot manager? Check out the standalone [Cerolingo browser extension](https://ancymon.dev/Cerolingo/) ([GitHub](https://github.com/ancym0n/Cerolingo)) for Chrome, Firefox, and Firefox for Android.

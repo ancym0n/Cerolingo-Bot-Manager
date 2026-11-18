@@ -42,6 +42,7 @@ li {
 
   #content,
   #faq,
+  #promo,
   #privacy {
     width: 100%;
   }
@@ -106,6 +107,7 @@ li {
   }
 
   #faq > div,
+  #promo > div,
   #privacy > div {
     padding: clamp(1.1rem, 3.5vw, 1.35rem) clamp(1rem, 4.2vw, 1.4rem)
       clamp(1.2rem, 3.8vw, 1.5rem);
@@ -113,9 +115,16 @@ li {
   }
 
   a[href="privacy"],
+  .promo-links a,
   #back-home {
     width: 100%;
     max-width: 15.5rem;
+  }
+
+  .promo-links {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 1.4vh, 0.65rem);
   }
 
   #download-modal {

@@ -61,6 +61,7 @@ a.stat-item:active {
 }
 
 #faq > div:hover,
+#promo > div:hover,
 #privacy > div:hover {
   transform: translateY(-2px);
   box-shadow: 0 calc(0.38rem + 2px) 0 0 var(--dark-main-color);

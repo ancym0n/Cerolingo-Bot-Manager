@@ -1,4 +1,5 @@
-#faq {
+#faq,
+#promo {
   width: 95%;
   display: grid;
   justify-items: center;
@@ -15,12 +16,14 @@
   animation: cerolingoLoadIn 0.45s var(--spring-ease) 0.18s forwards;
 }
 
-#faq h2 {
+#faq h2,
+#promo h2 {
   margin-bottom: 0.55rem;
   color: var(--title-color);
 }
 
-#faq > div {
+#faq > div,
+#promo > div {
   width: 100%;
   background-color: var(--panel-bg);
   border: 2px solid var(--dark-main-color);
@@ -55,12 +58,25 @@
   animation-delay: 0.46s;
 }
 
+#promo > div {
+  animation-delay: 0.5s;
+}
+
 a[href="privacy"] {
   display: inline-flex;
   max-width: 16rem;
   margin-top: 0.9rem;
 }
 
-#faq > div:nth-of-type(5) {
-  animation-delay: 0.46s;
+.promo-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+  width: 100%;
+}
+
+.promo-links a {
+  margin: 0;
 }
