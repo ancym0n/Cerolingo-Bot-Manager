@@ -16,7 +16,7 @@ let installing = false;
 function parse(v) {
   const m = String(v)
     .trim()
-    .replace(/^v/i, "")
+    .replace(/^(?:beta-)?v/i, "")
     .match(/^(\d+)\.(\d+)\.(\d+)(?:-([\w.]+))?/);
   return m ? { n: [+m[1], +m[2], +m[3]], pre: m[4] || "" } : null;
 }
@@ -55,7 +55,7 @@ async function checkForUpdate() {
       return (latest = null);
     const asset = pickAsset(rel.assets || []);
     latest = {
-      version: String(rel.tag_name).replace(/^v/i, ""),
+      version: String(rel.tag_name).replace(/^(?:beta-)?v/i, ""),
       page: rel.html_url,
       asset: asset && {
         name: asset.name,
