@@ -1,7 +1,7 @@
 # Cerolingo Bot Manager
 
 ![Version](https://img.shields.io/github/v/release/ancym0n/Cerolingo-Bot-Manager?color=6877ff&label=Version&labelColor=e7ecff&style=flat)
-[![Website](https://img.shields.io/badge/Website-ancymon.dev-6877ff?labelColor=e7ecff&logo=globe&logoColor=white)](https://ancymon.dev/CerolingoBM/)
+[![Website](https://img.shields.io/badge/Website-ancymon.dev-6877ff?labelColor=e7ecff&logo=globe&logoColor=white)](https://ancymon.dev/Cerolingo-Bot-Manager/)
 
 Desktop application for creating and managing Duolingo bot accounts, farming XP, and running the Cerolingo auto-solver with Playwright.
 
@@ -41,3 +41,7 @@ You do **not** need Node.js, Python or Playwright. On first launch (when you pre
 2. Click **Create Account(s)** to generate Duolingo accounts. Saved credentials and cookies are stored automatically in `src/python/logs/accounts.txt`.
 3. Click **Farm XP** to gain XP across all saved accounts, or click **Auto Solver** to open an interactive Duolingo session with the Cerolingo mod menu and auto-solver enabled.
 4. Click **Manage Accounts** at any time to view or edit your saved accounts file.
+
+## Cerolingo Extension
+
+Just want the in-page mod menu and auto-solver inside your own browser without the desktop bot manager? Check out the standalone [Cerolingo browser extension](https://ancymon.dev/Cerolingo/) ([GitHub](https://github.com/ancym0n/Cerolingo)) for Chrome, Firefox, and Firefox for Android.
