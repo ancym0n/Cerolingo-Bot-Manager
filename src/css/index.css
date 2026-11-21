@@ -276,3 +276,64 @@
   opacity: 0.6;
   cursor: default;
 }
+
+#setup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+#setup-overlay[hidden],
+#setup-close[hidden] {
+  display: none;
+}
+
+#setup-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: min(26rem, calc(100vw - 2rem));
+  padding: 1rem 1.2rem;
+  border: 2px solid var(--accent-border);
+  border-radius: 14px;
+  background: var(--accent-dark-bg);
+  box-shadow: 0 0.3rem 0 0 var(--dark-main-color);
+  color: var(--title-color);
+  font-size: 0.9rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+  animation: cerolingoLoadIn 0.45s var(--spring-ease) both;
+}
+
+#setup-bar {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+
+#setup-fill {
+  width: 0;
+  height: 100%;
+  background: var(--main-color);
+  transition: width 0.2s ease;
+}
+
+#setup-overlay.error #setup-bar {
+  display: none;
+}
+
+#setup-close {
+  align-self: flex-end;
+  padding: 0.32rem 0.8rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--background-color);
+  box-shadow: 0 0.22rem 0 0 var(--dark-main-color);
+  color: var(--bg-dark);
+  font-weight: 800;
+  cursor: pointer;
+}

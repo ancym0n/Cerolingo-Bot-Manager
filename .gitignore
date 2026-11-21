@@ -1,10 +1,4 @@
-dist
-out
-tmp
-node_modules
+src-tauri/target
+src-tauri/gen
 *.zip
-*.pyc
-__pycache__
 .env
-src/python/logs
-src/python/cache

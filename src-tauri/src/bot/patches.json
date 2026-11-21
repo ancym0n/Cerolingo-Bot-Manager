@@ -1,0 +1,56 @@
+{
+ "solver": [
+  {
+   "old": "  if (dt.endsWith(\"-challenge-tap-token\")) {\n    add(dt.slice(0, -\"-challenge-tap-token\".length));\n  }",
+   "new": "  // \"my house\" can be encoded as \"house-challenge-tap-token my\".\n  const dtMatch = dt.match(/^(.*?)-challenge-tap-token(?:\\s+(.*))?$/);\n  if (dtMatch) {\n    add(dtMatch[1]);\n    if (dtMatch[2]) add(`${dtMatch[2]} ${dtMatch[1]}`);\n  }"
+  }
+ ],
+ "challenges": [
+  {
+   "old": "data-test$=\"-challenge-tap-token\"",
+   "new": "data-test*=\"-challenge-tap-token\""
+  },
+  {
+   "old": "  return btn.innerText.replace(/[\\d\\n]/g, \"\").trim();\n}\n\nfunction setReactInputValue(",
+   "new": "  return btn.innerText.replace(/[\\d\\n]/g, \"\").trim();\n}\n\n// Tokens are case/whitespace-normalised so \"My house \" still matches \"my house\".\nfunction normToken(text) {\n  return String(text ?? \"\")\n    .normalize(\"NFC\")\n    .replace(/\\s+/g, \" \")\n    .trim()\n    .toLocaleLowerCase();\n}\n\nfunction setReactInputValue("
+  },
+  {
+   "old": "    const findBtn = (text) =>\n      available.find(\n        (b) =>\n          getTokenText(b) === text ||\n          b.getAttribute(\"data-test\") === `${text}-challenge-tap-token`,\n      );\n\n    const btn1 = findBtn(words[0]);\n    const btn2 = findBtn(words[1]);\n\n    if (btn1 && btn2 && btn1 !== btn2) {",
+   "new": "    const findBtn = (text, exclude) => {\n      const want = normToken(text);\n      return available.find(\n        (b) =>\n          b !== exclude &&\n          (normToken(getTokenText(b)) === want ||\n            normToken(b.getAttribute(\"data-test\")) ===\n              `${want}-challenge-tap-token`),\n      );\n    };\n\n    // Pick the first two words that resolve to two different buttons\n    // (learningToken and learningWord can be the same text).\n    let btn1 = null;\n    let btn2 = null;\n    for (const word of words) {\n      if (!btn1) btn1 = findBtn(word);\n      else if (!btn2) btn2 = findBtn(word, btn1);\n    }\n\n    if (btn1 && btn2) {"
+  },
+  {
+   "old": "const sleep = (ms) => new Promise((r) => setTimeout(r, ms));\n",
+   "new": "const sleep = (ms) => new Promise((r) => setTimeout(r, ms));\nconst isFastMode = () => Boolean(INITIAL_CONFIG.fastMode);\nconst stepSleep = (ms) => sleep(isFastMode() ? Math.min(ms, 15) : ms);\n"
+  },
+  {
+   "old": "await sleep(45);",
+   "new": "if (!isFastMode()) await sleep(45);"
+  },
+  {
+   "old": "if (!isFxEnabled()) {\n    setReactInputValue(el, value);",
+   "new": "if (!isFxEnabled() || isFastMode()) {\n    if (isFxEnabled()) {\n      const wrap = el.closest(\"label\") || el;\n      el.classList.add(\"cerolingo-bot-typing\");\n      if (wrap !== el) wrap.classList.add(\"cerolingo-bot-typing\");\n      spawnBotFxOverlay(wrap, \"typing\");\n    }\n    setReactInputValue(el, value);"
+  },
+  {
+   "sleep_to_step_sleep": [
+    55,
+    65,
+    80,
+    100
+   ]
+  },
+  {
+   "old": "await sleep(160);",
+   "new": "await sleep(isFastMode() ? 45 : 160);"
+  },
+  {
+   "old": "setInterval(handleChallengeStep, 200);",
+   "new": "setInterval(handleChallengeStep, isFastMode() ? 80 : 200);"
+  }
+ ],
+ "highlight": [
+  {
+   "old": "if (!existing) document.head.appendChild(storyHighlightStyle);",
+   "new": "if (!existing) (document.head || document.documentElement)?.appendChild(storyHighlightStyle);"
+  }
+ ]
+}

@@ -1,6 +1,0 @@
-dist
-out
-tmp
-node_modules
-package-lock.json
-build/installer

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/settings.css" />
     <link rel="stylesheet" href="../css/resize.css" />
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon" />
+    <script src="../js/api.js"></script>
     <script src="../js/main.js" defer></script>
     <script src="../js/settings.js" defer></script>
     <script src="../js/run.js" defer></script>
@@ -63,6 +64,14 @@
         </div>
       </section>
     </main>
+
+    <aside id="setup-overlay" role="alertdialog" aria-live="polite" hidden>
+      <div id="setup-card">
+        <span id="setup-text"></span>
+        <div id="setup-bar"><div id="setup-fill"></div></div>
+        <button id="setup-close" type="button" hidden>Close</button>
+      </div>
+    </aside>
 
     <aside id="update-toast" role="status" hidden>
       <span id="update-text"></span>

@@ -1,0 +1,49 @@
+[package]
+name = "cerolingo-bot-manager"
+version = "1.1.1"
+description = "Simple Duolingo bot managing tool"
+authors = ["ancymon <ancym0n@users.noreply.github.com>"]
+license = "ISC"
+repository = "https://github.com/ancym0n/Cerolingo-Bot-Manager"
+edition = "2024"
+rust-version = "1.90"
+
+[[bin]]
+name = "cerolingo-bot-manager"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+anyhow = "1.0.104"
+base64 = "0.23.1"
+chrono = { version = "0.4.45", default-features = false, features = ["clock"] }
+dirs = "7.0.0"
+fastrand = "2.5.0"
+futures-util = "0.3.34"
+open = "5.4.5"
+reqwest = { version = "0.13", default-features = false, features = ["rustls-no-provider", "json", "http2", "system-proxy"] }
+rustls = { version = "0.23.46", default-features = false, features = ["ring", "std", "tls12"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+sha2 = "0.11.0"
+tauri = { version = "2", features = [] }
+tauri-plugin-single-instance = "2"
+tempfile = "3.27.0"
+tokio = { version = "1.54.1", features = ["rt", "rt-multi-thread", "macros", "time", "process", "sync", "signal", "fs", "io-util", "net"] }
+tokio-tungstenite = { version = "0.30.0", default-features = false, features = ["connect"] }
+zip = { version = "7.3.0", default-features = false, features = ["deflate"] }
+
+[target."cfg(windows)".dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_System_Console", "Win32_Foundation", "Win32_Storage_FileSystem", "Win32_System_Threading", "Win32_System_JobObjects", "Win32_Security"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
